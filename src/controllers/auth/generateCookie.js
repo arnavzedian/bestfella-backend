@@ -1,7 +1,9 @@
-let { User } = require("../../../database/db");
+let { User } = require("../../database/db");
+const fetch = require("node-fetch");
 
 async function generateCookie(req, res, next) {
   let accessToken = req.query.accessToken;
+  if (!accessToken) return next("access token not present");
   let userInfo = await getUserInfo(accessToken);
   let JWT_token = await saveUser(userInfo);
   res.json({ data: { token: JWT_token } });
@@ -27,7 +29,7 @@ async function saveUser(payload) {
   } else {
     let count = await User.countDocuments({ name: payload.name });
     let username = payload.name.replace(" ", "-") + count;
-    var user_save = new User({
+    user = new User({
       name: payload.name,
       username: username,
       password: null,
@@ -37,7 +39,7 @@ async function saveUser(payload) {
       verificationCode: null,
     });
 
-    await user_save.save();
+    await user.save();
     return user.generateToken();
   }
 }

@@ -5,7 +5,7 @@ let unlock = new mongoose.Schema({
     type: String,
     required: true,
   },
-  donationID: String.apply,
+  donationID: String,
   createdAt: { type: Date, required: true, default: Date.now },
 });
 

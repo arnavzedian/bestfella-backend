@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-if (!process.env.PORT) require("dotenv").config();
 mongoose.set("runValidators", true);
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
