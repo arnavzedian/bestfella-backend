@@ -6,7 +6,7 @@ router.use("/api/v1/auth", authRouter);
 router.use("/api/v1", apiRouter);
 
 router.use((req, res, next) => {
-  next("route not found");
+  next("this is bestfella, and I am sorry to say route not found");
 });
 
 module.exports = router;
