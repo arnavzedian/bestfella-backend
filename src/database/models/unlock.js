@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 let unlock = new mongoose.Schema({
-  email: {
+  requester: {
     type: String,
     required: true,
   },
   donationID: String,
-  createdAt: { type: Date, required: true, default: Date.now },
+  dateOfEntry: String,
 });
 
-unlock.index({ createdAt: 1 });
+unlock.index({ dateOfEntry: 1 });
 
 module.exports = unlock;

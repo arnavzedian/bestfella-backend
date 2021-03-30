@@ -16,7 +16,6 @@ let user = new mongoose.Schema({
   },
 
   googleId: String,
-  gpsLocation: String,
   phoneNumber: Number,
   name: String,
 });

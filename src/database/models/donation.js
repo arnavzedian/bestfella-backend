@@ -10,6 +10,8 @@ let donation = new mongoose.Schema(
     image: String,
     email: String,
     city: String,
+    GPS: String,
+    active: { type: Boolean, default: true },
   },
   { timestamps: true }
 );
