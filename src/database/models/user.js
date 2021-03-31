@@ -14,7 +14,7 @@ let user = new mongoose.Schema({
     required: true,
     unique: true,
   },
-
+  picture: String,
   googleId: String,
   phoneNumber: Number,
   name: String,
@@ -24,7 +24,7 @@ user.index({ name: "text", about: "text", tags: "text", username: "text" });
 
 user.methods.generateToken = function () {
   let JWT_payload = {
-    appName: "auth",
+    picture: this.picture,
     id: this.id,
     username: this.username,
     name: this.name,

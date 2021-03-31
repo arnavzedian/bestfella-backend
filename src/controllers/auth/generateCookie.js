@@ -5,6 +5,7 @@ async function generateCookie(req, res, next) {
   let accessToken = req.query.accessToken;
   if (!accessToken) return next("access token not present");
   let userInfo = await getUserInfo(accessToken);
+  console.log(userInfo);
   let JWT_token = await saveUser(userInfo);
   res.json({ data: { token: JWT_token } });
 }
@@ -30,6 +31,7 @@ async function saveUser(payload) {
     let count = await User.countDocuments({ name: payload.name });
     let username = payload.name.replace(" ", "-") + count;
     user = new User({
+      picture: payload.picture,
       name: payload.name,
       username: username,
       password: null,

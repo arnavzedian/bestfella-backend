@@ -1,4 +1,4 @@
-let { Donation } = require("../../database/db");
+let { Donation } = require("../database/db");
 
 async function getFeeds(req, res, next) {
   let donationID = req.body.donationID;

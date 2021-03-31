@@ -7,7 +7,7 @@ async function attachUserData(req, res, next) {
   let cookie = req.headers.authorization.replace("Bearer", "").trim();
   let userData;
   try {
-    userData = cookie ? await parseJWT(cookie) : null;
+    userData = cookie ? parseJWT(cookie) : null;
     let user = await User.findOne({ _id: userData.id });
     if (!user) return next("Invalid Token");
   } catch (e) {
@@ -27,7 +27,7 @@ function parseJWT(value) {
     return reject(e);
   }
 
-  return resolve(payload);
+  return payload;
 }
 
 module.exports = attachUserData;

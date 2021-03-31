@@ -1,9 +1,9 @@
-const { Donation } = require("../../database/db");
+const { Donation } = require("../database/db");
 
 let makeDonation = async (req, res, next) => {
   //title, image, tags, city, GPS, donater, active
 
-  let fields = ["title", "image", "tags", "city", "GPS", "donater", "active"];
+  let fields = ["title", "image", "tags", "city", "GPS"];
 
   for (let index of fields) {
     if (!req.body[index]) return next(index + " field is required");
@@ -21,7 +21,7 @@ let makeDonation = async (req, res, next) => {
   newDonation.active = true;
 
   try {
-    let newDonation = await newDonation.save();
+    await newDonation.save();
     sendSuccess();
   } catch (error) {
     next(error);
