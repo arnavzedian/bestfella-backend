@@ -5,13 +5,16 @@ const getDonationDetails = require("../controllers/getDonationDetails");
 const getFeeds = require("../controllers/getFeeds");
 const getProfile = require("../controllers/getProfile");
 const makeDonation = require("../controllers/makeDonation");
+const getPhoneNumber = require("../controllers/getPhoneNumber");
 const requestPhoneNumber = require("../controllers/requestPhoneNumber");
+const savePhoneNumber = require("../controllers/savePhoneNumber");
 
 router.get("/deactivate-donation", deactivateDonation);
 router.get("/donation-details", getDonationDetails);
-router.get("/feeds", getFeeds);
+router.get("/donations", getFeeds);
 router.get("/profile", getProfile);
 router.post("/donation", makeDonation);
-router.get("/phone-number", requestPhoneNumber);
-
+router.get("/request-phone-number", requestPhoneNumber);
+router.post("/phone-number", savePhoneNumber);
+router.get("/phone-number", getPhoneNumber);
 module.exports = router;

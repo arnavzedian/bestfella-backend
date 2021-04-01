@@ -11,6 +11,7 @@ let donation = new mongoose.Schema(
     email: String,
     city: String,
     GPS: String,
+    donater: String,
     active: { type: Boolean, default: true },
   },
   { timestamps: true }

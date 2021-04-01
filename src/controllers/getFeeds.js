@@ -1,14 +1,20 @@
 let { Donation } = require("../database/db");
 
 async function getFeeds(req, res, next) {
-  let basis = req.body.basis;
-  let value = req.body.value;
+  let basis = req.query.basis;
+  let value = req.query.value;
+
   if (!basis) return next("basis field required");
+  if (!value && basis == "donater") value = req.user.id;
   if (basis != "city" && basis != "donater") return next("invalid basis field");
 
-  let data = await Donation.find({ [basis]: value }, ["image", "title"], {
-    sort: { createdAt: -1 },
-  });
+  let data = await Donation.find(
+    { [basis]: value },
+    ["image", "title", "tags"],
+    {
+      sort: { createdAt: -1 },
+    }
+  );
   return res.send({ data: data });
 }
 

@@ -1,6 +1,6 @@
 let { Donation } = require("../database/db");
 
-async function getFeeds(req, res, next) {
+async function getDonationDetails(req, res, next) {
   let donationID = req.body.donationID;
 
   if (!donationID) return next("donationID field required");
@@ -12,4 +12,4 @@ async function getFeeds(req, res, next) {
   return res.send({ data: data });
 }
 
-module.exports = getFeeds;
+module.exports = getDonationDetails;
