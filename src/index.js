@@ -6,6 +6,7 @@ const cors = require("cors");
 const mainRouter = require("./routes/mainRouter");
 const attachUserData = require("./middleware/attachUserData");
 const errorHandler = require("./middleware/errorHandler");
+const setupCloudStorage = require("./middleware/cloudStorage/cloudStorage.js");
 
 let corsOptions = {
   credentials: true,
@@ -17,6 +18,8 @@ app.use(morgan("tiny"));
 app.use(express.json()); //body parser alternative
 
 app.use(attachUserData);
+
+setupCloudStorage(app);
 
 app.use(mainRouter);
 app.use(errorHandler);
