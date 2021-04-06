@@ -4,9 +4,14 @@ const bucket = gc.bucket("donation-images");
 
 function uploadImage(file) {
   return new Promise((resolve, reject) => {
-    const { originalname, buffer } = file;
+    const { buffer } = file;
 
-    const blob = bucket.file(originalname.replace(/ /g, "_"));
+    let name = Date.now() + Math.round(Math.random() * 100);
+    if (file.originalname) {
+      name = file.originalname.replace(/ /g, "_");
+    }
+
+    const blob = bucket.file(name);
     const blobStream = blob.createWriteStream({
       resumable: false,
     });
