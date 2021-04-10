@@ -3,7 +3,7 @@ const { Donation } = require("../database/db");
 let makeDonation = async (req, res, next) => {
   //title, image, tags, city, GPS, donater, active
 
-  let fields = ["title", "image", "tags", "city", "GPS"];
+  let fields = ["title", "image", "tags", "city", "latitude", "longitude"];
 
   for (let index of fields) {
     if (!req.body[index]) return next(index + " field is required");
@@ -16,7 +16,8 @@ let makeDonation = async (req, res, next) => {
   newDonation.image = req.body.image;
   newDonation.tags = req.body.tags;
   newDonation.city = req.body.city;
-  newDonation.GPS = req.body.GPS;
+  newDonation.latitude = Number(req.body.latitude);
+  newDonation.longitude = Number(req.body.longitude);
   newDonation.donater = req.user.id;
   newDonation.active = true;
 
