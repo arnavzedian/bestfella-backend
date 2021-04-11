@@ -10,7 +10,7 @@ async function getFeeds(req, res, next) {
 
   let data = await Donation.find(
     { [basis]: value },
-    ["image", "title", "tags", "latitude", "longitude"],
+    ["image", "title", "tags", "latitude", "longitude", "donater"],
     {
       sort: { createdAt: -1 },
     }

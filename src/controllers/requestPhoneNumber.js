@@ -1,7 +1,7 @@
 let { Unlock, User, Donation } = require("../database/db");
 
 async function requestPhoneNumber(req, res, next) {
-  let fields = ["donationID", "createdAt"];
+  let fields = ["donationID"];
   let requester = req.user.id;
 
   if (!requester) return next("login in required");
@@ -15,17 +15,20 @@ async function requestPhoneNumber(req, res, next) {
     requester: requester,
   });
 
-  if (existingEntry) sendData();
+  if (existingEntry) return sendData();
 
   let today = new Date().toISOString().slice(0, 10);
 
-  let sameDateEntry = await Unlock.findOne({
+  let documentCount = await Unlock.countDocuments({
     requester: requester,
     dateOfEntry: today,
   });
 
-  if (sameDateEntry) {
-    return next("you can only request one phone number in a day");
+  let limit = 3;
+  console.log(documentCount);
+
+  if (documentCount > 3) {
+    return next(`you can only request  ${limit} phone numbers in day`);
   } else {
     var newEntry = new Unlock();
     newEntry.donationID = req.body.donationID;
@@ -50,7 +53,7 @@ async function requestPhoneNumber(req, res, next) {
 
   async function sendData() {
     let donation = await Donation.findOne({
-      donationID: req.body.donationID,
+      _id: req.body.donationID,
     });
 
     if (!donation) return next("donation has been deleted");
