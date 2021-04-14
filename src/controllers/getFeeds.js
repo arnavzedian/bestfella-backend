@@ -21,7 +21,7 @@ async function getFeeds(req, res, next) {
       "type",
       "period",
       "price",
-      "securityAmount",
+      "security",
     ],
     {
       sort: { createdAt: -1 },

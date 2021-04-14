@@ -7,6 +7,7 @@ const getProfile = require("../controllers/getProfile");
 const makeDonation = require("../controllers/makeDonation");
 const getPhoneNumber = require("../controllers/getPhoneNumber");
 const requestPhoneNumber = require("../controllers/requestPhoneNumber");
+const getDonaterName = require("../controllers/getDonaterName");
 const savePhoneNumber = require("../controllers/savePhoneNumber");
 const deleteDonation = require("../controllers/deleteDonation");
 
@@ -17,6 +18,7 @@ router.get("/profile", getProfile);
 router.post("/delete-donation", deleteDonation);
 router.post("/donation", makeDonation);
 router.post("/request-phone-number", requestPhoneNumber);
+router.get("/donater-name", getDonaterName);
 router.post("/phone-number", savePhoneNumber);
 router.get("/phone-number", getPhoneNumber);
 module.exports = router;

@@ -11,7 +11,7 @@ let donation = new mongoose.Schema(
     email: String,
     city: String,
     latitude: Number,
-    securityAmount: Number,
+    security: Number,
     type: String,
     price: Number,
     period: String,
