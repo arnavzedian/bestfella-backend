@@ -9,7 +9,7 @@ async function attachUserData(req, res, next) {
   try {
     userData = cookie ? parseJWT(cookie) : null;
     let user = await User.findOne({ _id: userData.id });
-    if (!user) return next("Invalid Token");
+    if (!user) return next("user not found");
   } catch (e) {
     next(e);
   }
