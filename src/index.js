@@ -6,7 +6,7 @@ const cors = require("cors");
 const mainRouter = require("./routes/mainRouter");
 const attachUserData = require("./middleware/attachUserData");
 const errorHandler = require("./middleware/errorHandler");
-const setupCloudStorage = require("./middleware/cloudStorage/CloudStorage.js");
+const setupCloudStorage = require("./middleware/cloudStorage/cloudStorage.js");
 
 let corsOptions = {
   credentials: true,
