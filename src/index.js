@@ -13,6 +13,7 @@ let corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
 app.use(morgan("tiny"));
 
 app.use(express.json()); //body parser alternative
