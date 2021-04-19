@@ -4,10 +4,14 @@ const fetch = require("node-fetch");
 async function generateCookie(req, res, next) {
   let accessToken = req.query.accessToken;
   if (!accessToken) return next("access token not present");
-  let userInfo = await getUserInfo(accessToken);
-  console.log(userInfo);
-  let JWT_token = await saveUser(userInfo);
-  res.json({ data: { token: JWT_token } });
+  try {
+    let userInfo = await getUserInfo(accessToken);
+    console.log(userInfo);
+    let JWT_token = await saveUser(userInfo);
+    res.json({ data: { token: JWT_token } });
+  } catch (e) {
+    next(e);
+  }
 }
 
 async function getUserInfo(accessToken) {
