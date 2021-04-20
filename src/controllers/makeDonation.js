@@ -41,6 +41,8 @@ let makeDonation = async (req, res, next) => {
 
   if (!req.user) return next("login is required");
 
+  if (req.body.isUsed) req.body.type = "used";
+
   var newDonation = new Donation();
   newDonation.title = req.body.title;
   newDonation.image = req.body.image;
