@@ -11,7 +11,7 @@ const setupCloudStorage = require("./middleware/cloudStorage/cloudStorage.js");
 let corsOptions = {
   credentials: true,
 };
-app.use(checkIfDatabaseIsConnected);
+// app.use(checkIfDatabaseIsConnected);
 app.use(cors(corsOptions));
 
 app.use(morgan("tiny"));
